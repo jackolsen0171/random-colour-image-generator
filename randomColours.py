@@ -1,4 +1,3 @@
-#this version just completely randomises the positions of the colour pixels
 import pygame
 import random
 import math
