@@ -2,11 +2,11 @@
 
 Generates a random array of pixels varying of different colours
 
-This program doesn't have much practical use but I was to see all the different images it made.
-
-The colours are determined randomly and the number of times each colour appears is also random.
+This program doesn't have much practical use but I was curious to see all the different images it made.
 
 Colour and number of appearances can be changed in the "Colours" set at the top of the program.
+
+The colours can be determined randomly and the number of times each colour appears could also be random. This way creates some pretty cool images.
 
 These two are examples where the colours can appear from once to 10,000 times.
 
