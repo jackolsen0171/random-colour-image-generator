@@ -3,31 +3,27 @@ import random
 import math
 pygame.init()
 
-# draw_grid_lines = True
-draw_grid_lines = False
+draw_grid_lines = True
+
 
 # colours = {
-#     (255,0,0):1000,
-#     (0,255,0):1000,
-#     (0,0,255):1000,
+#     (random.randint(1,255),random.randint(1,255),random.randint(1,255)):random.randint(1,10000),
+#     (random.randint(1,255),random.randint(1,255),random.randint(1,255)):random.randint(1,10000),
+#     (random.randint(1,255),random.randint(1,255),random.randint(1,255)):random.randint(1,10000),
+#     (random.randint(1,255),random.randint(1,255),random.randint(1,255)):random.randint(1,20000),
+#     (random.randint(1,255),random.randint(1,255),random.randint(1,255)):random.randint(1,10000),
+
+   
 # }
 
 colours = {
-    (random.randint(1,255),random.randint(1,255),random.randint(1,255)):random.randint(1,10000),
-    (random.randint(1,255),random.randint(1,255),random.randint(1,255)):random.randint(1,10000),
-    # (random.randint(1,255),random.randint(1,255),random.randint(1,255)):random.randint(1,10000),
-    # (random.randint(1,255),random.randint(1,255),random.randint(1,255)):random.randint(1,20000),
-    # (random.randint(1,255),random.randint(1,255),random.randint(1,255)):random.randint(1,10000),
-
-   
+    (255,0,0) : 1,
+    (0,255,0) : 6
 }
 
-# colours = {
-#     (255,0,0): 79,
-#     (0,0,255): 755,
-#     (230,230,250): 500
-# }
 
+# ==================================================
+# This resizes the window based on number of input colours
 
 pixelTotal = sum(colours.values())
 
@@ -38,6 +34,8 @@ defaultWidth = 512
 PIXEL_SIZE = (defaultWidth//rowsCols) + 1
 
 WIDTH,HEIGHT = PIXEL_SIZE * rowsCols, PIXEL_SIZE * rowsCols
+
+# ==================================================
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -51,7 +49,7 @@ BLUE = (0,0,255)
 GREEN = (0,255,0)
 WHITE = (255,255,255)
 
-
+# initialises an unrandomised grid from the colours set
 def initBaseGrid(colours,size):
     coloursArray = []
     baseGrid = []
@@ -63,29 +61,35 @@ def initBaseGrid(colours,size):
     for i in range(rowsCols):
         baseGrid.append([])
         for _ in range(rowsCols):
-            if count < size:
+            if count < size:#stops once all colours have been added 
                 baseGrid[i].append(coloursArray[count])
                 count += 1
             else:
                 baseGrid[i].append((255,255,255))
                 
     return baseGrid
+    
 
 
 
 def shuffle(array):
+    # get 1d array of all colours
     inputArray = []
     shuffledArray1D = []
     for i in range(len(array)):
         for j in range(len(array)):
             inputArray.append(array[i][j])
+
     array_length = int(math.sqrt(len(inputArray)))
     shuffledArray2D = [[BLACK for i in range(array_length)]for i in range(array_length)]
+    
+    # get randomised version of base grid as 1d array
     for i in range(len(inputArray) -1, -1,-1):
         randomNumber = random.randint(0,i)
         shuffledArray1D.append(inputArray[randomNumber])
         inputArray.pop(randomNumber)
 
+    # convert random 1d to 2d array for the grid 
     counter = 0
     for i in range(len(array)):
         for j in range(len(array)):
@@ -116,6 +120,7 @@ def draw(win, grid):
     win.fill(WHITE)
     draw_grid(win, grid)
     pygame.display.update()
+
 
 run = True
 baseGrid = initBaseGrid(colours,pixelTotal)

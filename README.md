@@ -1,8 +1,12 @@
 # random-colour-image-generator
-generates a random array of pixels varying of different colours
+
+Generates a random array of pixels varying of different colours
+
+This program doesn't have much practical use but I was to see all the different images it made.
 
 The colours are determined randomly and the number of times each colour appears is also random.
-colour and number of appearances can be changed in the "Colours" set at the top of the program.
+
+Colour and number of appearances can be changed in the "Colours" set at the top of the program.
 
 These two are examples where the colours can appear from once to 10,000 times.
 
